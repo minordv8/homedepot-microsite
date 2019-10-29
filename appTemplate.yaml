@@ -1,0 +1,70 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Mappings:
+  EnvMap:
+    devmaj:
+      originAccessIdentity: EDMC1HSYLEBFK
+      alias: devmaj-costco
+      AcmCertArn: "arn:aws:acm:us-east-1:563116987804:certificate/21fbc1ec-66d6-48d1-bd00-4f0e35f095d6"
+    majstg:
+      originAccessIdentity: E1M743I7QPF1RQ # same as prd bc majstg is in prd aws account
+      alias: majstg-costco
+      AcmCertArn: "arn:aws:acm:us-east-1:578915239930:certificate/4e896538-7eb2-46e9-8c54-fec377e692ee"
+    prd:
+      originAccessIdentity: E1M743I7QPF1RQ
+      alias: costco
+      AcmCertArn: "arn:aws:acm:us-east-1:578915239930:certificate/402ef7e3-1a47-4937-99d4-ea9d51d190f3"
+Parameters:
+  EnvName:
+    Type: String
+  Version:
+    Type: String
+  Domain:
+    Type: String
+    Default: sunrundev.com
+Resources:
+  NetworkOperationsCenterDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Origins:
+        - DomainName: sunrun-cloudfront.s3.amazonaws.com
+          Id: myS3Origin
+          OriginPath: /costco-microsite
+          S3OriginConfig:
+            OriginAccessIdentity: !Sub
+            - origin-access-identity/cloudfront/${OriginAccessIdentity}
+            - { OriginAccessIdentity: !FindInMap [EnvMap, !Ref EnvName, originAccessIdentity] }
+        Enabled: true
+        Comment: !Join [ " ", [ Network Operations Center, !Ref EnvName] ]
+        DefaultRootObject: !Join [ "", [ index-, !Ref Version, .html] ] # index-[Version].html
+        DefaultCacheBehavior:
+          TargetOriginId: myS3Origin
+          ForwardedValues:
+            QueryString: false
+          ViewerProtocolPolicy: redirect-to-https # Redirect all HTTP to HTTPS
+          Compress: true # gzip files when browser accepts gzip
+# .       Custom Errors might be useful in the future, but are messing with the IP based blocking we are doing during dev.
+#         CustomErrorResponses: # return index-[Version].html for other routes besides root "/"
+#         - ErrorCode: 403 # from S3
+#           ResponseCode: 200
+#           ResponsePagePath: !Join [ "", [ /index-, !Ref Version, .html] ] # /index-[Version].html
+        PriceClass: PriceClass_100 # Deploys to US, Canada, and Europe.
+#        Logging:
+#          IncludeCookies: 'false'
+#          Bucket: mylogs.s3.amazonaws.com
+#          Prefix: myprefix
+        Aliases:
+        - !Join ["", [!FindInMap [EnvMap, !Ref EnvName, alias], ., !Ref Domain] ]
+        ViewerCertificate:
+          AcmCertificateArn: !FindInMap [EnvMap, !Ref EnvName, AcmCertArn]
+          SslSupportMethod: sni-only
+  RecordSet:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      AliasTarget:
+        DNSName: !GetAtt NetworkOperationsCenterDistribution.DomainName # ex. d1zxethrhu2qb6.cloudfront.net
+        EvaluateTargetHealth: true
+        HostedZoneId: Z2FDTNDATAQYW2 # aws constant that must be present
+      HostedZoneName: !Sub ${Domain}. # sunrundev.com or sunrun.com
+      Name: !Join ["", [!FindInMap [EnvMap, !Ref EnvName, alias], ., !Ref Domain, .] ] # ex. devmaj-costco.sunrundev.com.
+      Type: A # type alias, links to cloudfront distribution

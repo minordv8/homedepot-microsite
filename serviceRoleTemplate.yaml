@@ -1,0 +1,33 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  EnvName:
+    Type: String
+    Default: 'devmaj'
+  Version:
+    Type: String
+    Default: '1234'
+  AppNamespace:
+    Type: String
+    Default: 'costco-microsite'
+  ArtifactBucket:
+    Type: String
+    Default: 'sunrun-cloudfront'
+  Domain:
+    Type: String
+    Default: 'gateway.sunrundev.com'
+Resources:
+  'Fn::Transform':
+    Name: 'AWS::Include'
+    Parameters:
+      Location: 's3://cf-templates-1gogcwcstrrt4-us-west-2/cfn-cloudfront-service-role/2-e49cda0-service-role.yaml'
+  Route53Policy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: !Sub ${EnvName}-${AppNamespace}-Route53Policy
+      Roles: [!Ref ServiceRole] # defined in included cfn
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Action: ["route53:ListHostedZones"]
+            Resource: "*"

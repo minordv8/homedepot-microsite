@@ -1,0 +1,39 @@
+@font-face {
+  font-display: swap;
+  font-family: 'untitled_sans_regular';
+  src: url('../fonts/UntitledSans-Regular.woff2') format('woff2'),
+  url('../fonts/UntitledSans-Regular.woff') format('woff');
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'untitled_serif_regular';
+  src: url('../fonts/UntitledSerif-Regular.woff2') format('woff2'),
+  url('../fonts/UntitledSerif-Regular.woff') format('woff');
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'untitled_sans_light';
+  src: url('../fonts/UntitledSans-Light.woff2') format('woff2'),
+  url('../fonts/UntitledSans-Light.woff') format('woff');
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'untitled_sans_bold';
+  src: url('../fonts/UntitledSans-Bold.woff2') format('woff2'),
+  url('../fonts/UntitledSans-Bold.woff') format('woff');
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+}
