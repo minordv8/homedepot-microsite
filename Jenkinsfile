@@ -4,7 +4,7 @@ import com.sunrun.util.ConfigurationDetails
 import sunrunAwsSamCd
 
 sunrunAwsSamCd {
-  excludedEnvironments = ['devlocal', 'training', 'relcert']
+  excludedEnvironments = ['devlocal', 'training', 'relcert', 'prd']
   skipKibana = true // skip kibana mining since we don't have browser logging yet :(
   cloudfrontBuild = true
   nodeBuild = false

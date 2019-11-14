@@ -45,7 +45,7 @@ h6 {
 }
 h1 {
   font-size: 2em;
-  font-family: 'untitled_sans_regular', sans-serif;  
+  font-family: 'untitled_serif_regular',serif;
   @media (min-width: 769px) {
     font-size: 64px;
   }
@@ -59,8 +59,8 @@ h2 {
   text-align: center;
   @media (min-width: 1024px) {
     font-size: 32px;
-    line-height: 40px; 
-    text-align: left;   
+    line-height: 40px;
+    text-align: left;
     &.alt {
       font-size: 36px;
     }
@@ -70,7 +70,7 @@ h2 {
   }
 }
 h3 {
-  font-family: 'untitled_sans_bold', sans-serif;  
+  font-family: 'untitled_sans_bold', sans-serif;
 }
 h4 {
   text-transform: uppercase;
@@ -108,6 +108,9 @@ ul {
 }
 .text-muted {
   font-size: 12px;
+}
+.center-mobile {
+  text-align: center;
 }
 section {
   padding:0;
@@ -294,7 +297,7 @@ aside {
             .navbar-header .navbar-brand, .navbar-notice {
                 color: #000000;
                 a {
-                  color: #000000;                  
+                  color: #000000;
                 }
             }
             .nav > li > a,
@@ -315,16 +318,17 @@ header {
   width: 100%;
   min-height: 600px;
   background-repeat: no-repeat;
-  background-size: auto;
-  background-color: $theme-dark;    
-  background-position: center 50px;
-  background-image: url('../img/blackout_homefront_homes-in-a-row.jpg');
+  background-size: 100% auto;
+  background-color: $theme-dark;
+  background-position: center top;
+  background-image: url('../img/ken-best-family-glamour-photo-mobile.jpg');
   text-align: center;
   color: white;
   @media (min-width: 769px) {
+    background-image: url('../img/ken-best-family-glamour-photo.jpg');
     background-size: 100% auto;
-    background-position-y: top;
-    margin-top: 85px;
+    margin-top: 84px;
+    background-color: #fff;
   }
   .header-content {
       position: relative;
@@ -334,16 +338,17 @@ header {
       .header-content-inner {
           h1 {
               margin-top: 0;
-              margin-bottom: 190px;
+              margin-bottom: 160px;
               @media (min-width: 769px){
                 font-size: 46px !important;
                 margin-top: 40px;
+                margin-bottom: 240px;
               }
           }
           p {
               font-weight: 300;
               font-size: 20px;
-              margin-bottom: 50px;
+              margin-bottom: 20px;
           }
         .embed-responsive-16by9 {
           @media (max-width:768px){
@@ -359,7 +364,7 @@ header {
   @media (min-width: 769px) {
       min-height: 100%;
       .header-content {
-          padding: 60px 15px 20px;
+          padding: 60px 15px 0px;
           .header-content-inner {
               max-width: 1000px;
               margin-left: auto;
@@ -371,7 +376,7 @@ header {
               }
               .embed-responsive-16by9 {
                 min-height: 600px;
-                
+
               }
           }
       }
@@ -397,7 +402,7 @@ header {
         width: 95px;
       }
       .sunrun-at-glance {
-        background-image: url('../img/sunrun-at-a-glance2.svg'); 
+        background-image: url('../img/sunrun-at-a-glance2.svg');
         background-repeat:no-repeat;
         background-position-x: left;
         background-position-y: top;
@@ -517,7 +522,7 @@ header {
 // Sections
 
 .section-heading {
-    margin-top: 0;    
+    margin-top: 0;
 }
 
 #solar-benefits {
@@ -565,8 +570,8 @@ header {
     background-image: url('../img/blackout_homefront_cul-de-sac-mobile.jpg');
     background-repeat: no-repeat;
     background-size: 100% auto;
-    background-position: left -120px;    
-    min-height: 644px;    
+    background-position: left -120px;
+    min-height: 644px;
     h2 {
       margin-bottom: 310px;
     }
@@ -574,7 +579,7 @@ header {
       min-height: 500px;
       background-image: url('../img/blackout_homefront_cul-de-sac.jpg');
       background-size: 100% auto;
-      background-position: left top;      
+      background-position: left top;
       h2 {
         margin-top: 60px;
         margin-bottom: 0;
@@ -588,7 +593,7 @@ header {
         background-repeat: no-repeat;
         background-size: 32px auto;
         background-position: left 10px;
-        padding-left: 60px;      
+        padding-left: 60px;
         .list-group-item-text {
         }
         &.no-icon {
@@ -624,16 +629,16 @@ header {
 
 #customer-stories {
   .quote {
-    padding: 40px;    
+    padding: 40px;
     .signature {
       font-size: 16px;
-      line-height: 24px;      
+      line-height: 24px;
     }
   }
 }//customer-stories
 
 #form2 {
-  background-color:#001A3C;  
+  background-color:#001A3C;
   color: #ffffff;
   .form-content {
       position: relative;
@@ -673,7 +678,7 @@ header {
               max-width: 1000px;
               margin-left: auto;
               margin-right: auto;
-              
+
               p {
                   max-width: 80%;
                   margin-left: auto;
@@ -681,7 +686,7 @@ header {
               }
               .embed-responsive-16by9 {
                 min-height: 600px;
-                
+
               }
           }
       }
@@ -696,6 +701,12 @@ footer {
     font-size: 14px;
     line-height: 24px;
     max-width: 234px;
+    &.legalese {
+      font-size: 12px;
+      line-height: 16px;
+      max-width: none;
+      padding-left: 15px;
+    }
   }
   .seo-footer__states {
     color: #0073E0;
@@ -703,11 +714,11 @@ footer {
     border-width: 1px 0;
     padding: 10px 15px;
     height: 40px;
-  }  
+  }
   .sr-footer {
     padding-top: 30px;
     font-family: "untitled_sans_regular",sans-serif;
-    font-size: 15px;    
+    font-size: 15px;
     @media only screen and (min-width: 1025px) {
       border-top: 1px solid #0073E0;
       padding-bottom: 80px;
@@ -715,22 +726,29 @@ footer {
     .nav-justified {
       > li {
         width: auto;
-        a:hover {
+        a {
+          padding: 10px 15px;
+          &:hover {
           color: #01193F;
           background-color: rgba(255,255,255,0);
-        }        
+        }
       }
-    }  
+    }
+    }
     .footer-social {
       font-size: 18px;
-      margin: 0 0 0 50px;
-      text-align: right;  
+      margin: 0px;
+      text-align: center;
       .social-icon {
         margin-right: 5px;
-      }    
-    } 
+      }
+      @media only screen and (min-width: 1025px){
+        text-align: right;
+        margin-left: 50px;
+      }
+    }
     .copyright {
-      text-align: right;
+      padding-left: 15px;
       p {
         font-size: 12px;
         line-height: 12px;
@@ -747,7 +765,7 @@ footer {
           height: 12px;
           &:last-of-type {
               border-color: rgba(255,255,255,0);
-          }          
+          }
           a {
             line-height: 12px;
             font-size: 12px;
@@ -755,8 +773,30 @@ footer {
             vertical-align: top;
           }
         }
-      }      
-    }     
+      }
+      @media only screen and (min-width: 1025px){
+        text-align: right;
+      }
+    }
+  }
+  .logo-rule {
+    background-image: linear-gradient(to right,transparent 15%,#0073E0 50%,transparent 85%);
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 1px;
+    margin-bottom: 40px;
+    position: relative;
+    text-align: center;
+    .sunrun-glyph {
+      display: inline-block;
+      margin: -16px auto 0;
+      max-width: 65px;
+      max-height: 28px;
+    }
+    }
+  padding-bottom: 100px;
+  @media only screen and (min-width: 1025px){
+    padding-bottom: 0px;
   }
 }//footer
 
@@ -846,5 +886,5 @@ body {
       margin-left: 15px;
       margin-right: 15px;
     }
-  }  
+  }
 }

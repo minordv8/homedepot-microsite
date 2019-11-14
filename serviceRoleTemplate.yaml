@@ -8,7 +8,7 @@ Parameters:
     Default: '1234'
   AppNamespace:
     Type: String
-    Default: 'costco-microsite'
+    Default: 'homedepot-microsite'
   ArtifactBucket:
     Type: String
     Default: 'sunrun-cloudfront'

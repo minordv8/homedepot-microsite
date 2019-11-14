@@ -3,16 +3,16 @@ Mappings:
   EnvMap:
     devmaj:
       originAccessIdentity: EDMC1HSYLEBFK
-      alias: devmaj-costco
-      AcmCertArn: "arn:aws:acm:us-east-1:563116987804:certificate/21fbc1ec-66d6-48d1-bd00-4f0e35f095d6"
+      alias: devmaj-homedepot
+      AcmCertArn: "arn:aws:acm:us-east-1:563116987804:certificate/d2d7ff39-f8d0-4340-9468-f97d5e16738e"
     majstg:
       originAccessIdentity: E1M743I7QPF1RQ # same as prd bc majstg is in prd aws account
-      alias: majstg-costco
-      AcmCertArn: "arn:aws:acm:us-east-1:578915239930:certificate/4e896538-7eb2-46e9-8c54-fec377e692ee"
+      alias: majstg-homedepot
+      AcmCertArn: "arn:aws:acm:us-east-1:578915239930:certificate/a76e5536-1971-4dae-8f9d-b712698c789e"
     prd:
       originAccessIdentity: E1M743I7QPF1RQ
-      alias: costco
-      AcmCertArn: "arn:aws:acm:us-east-1:578915239930:certificate/402ef7e3-1a47-4937-99d4-ea9d51d190f3"
+      alias: homedepot
+      AcmCertArn: "arn:aws:acm:us-east-1:578915239930:certificate/ce243d52-957b-4cc7-86d4-0b68d64e832a"
 Parameters:
   EnvName:
     Type: String
@@ -29,7 +29,7 @@ Resources:
         Origins:
         - DomainName: sunrun-cloudfront.s3.amazonaws.com
           Id: myS3Origin
-          OriginPath: /costco-microsite
+          OriginPath: /home-depot-microsite
           S3OriginConfig:
             OriginAccessIdentity: !Sub
             - origin-access-identity/cloudfront/${OriginAccessIdentity}
@@ -66,5 +66,5 @@ Resources:
         EvaluateTargetHealth: true
         HostedZoneId: Z2FDTNDATAQYW2 # aws constant that must be present
       HostedZoneName: !Sub ${Domain}. # sunrundev.com or sunrun.com
-      Name: !Join ["", [!FindInMap [EnvMap, !Ref EnvName, alias], ., !Ref Domain, .] ] # ex. devmaj-costco.sunrundev.com.
+      Name: !Join ["", [!FindInMap [EnvMap, !Ref EnvName, alias], ., !Ref Domain, .] ] # ex. devmaj-homedepot.sunrundev.com.
       Type: A # type alias, links to cloudfront distribution
